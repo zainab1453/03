@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رَفِيقَةُ رُوحِي ♥</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fff0f5 0%, #fbc2eb 100%);
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* القلوب المتساقطة في الخلفية باللون البني */
+        .heart-bg {
+            position: absolute;
+            color: #7f5539;
+            font-size: 20px;
+            opacity: 0.2;
+            animation: fall linear infinite;
+            z-index: 1;
+            user-select: none;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 25px;
+            width: 95%;
+            max-width: 500px;
+        }
+
+        /* اللوحة الإلكترونية المصممة باللون البني الفاخر */
+        .circuit-board {
+            background: #583110;
+            border: 5px solid #7f5539;
+            border-radius: 30px;
+            padding: 30px 20px;
+            box-shadow: 0 12px 35px rgba(88, 49, 16, 0.3);
+            position: relative;
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .board-title {
+            color: #fff0f5;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* منطقة الأسلاك المتشابكة والتوصيل */
+        .wire-zone {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        /* نقاط الطاقة الجانبية */
+        .node {
+            background: #7f5539;
+            border: 3px solid #fbc2eb;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            z-index: 5;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* زر التوصيل السحري التفاعلي */
+        .connect-btn {
+            background: #ff4081;
+            color: white;
+            border: 2px dashed white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(255, 64, 129, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+            user-select: none;
+            animation: pulse-border 1.5s infinite;
+        }
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(255, 64, 129, 0.6); }
+            100% { box-shadow: 0 0 0 15px rgba(255, 64, 129, 0); }
+        }
+
+        /* شكل الخطوط أو الأسلاك النحاسية خلف الأزرار */
+        .wire-line {
+            position: absolute;
+            height: 6px;
+            background: #7f5539;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            transition: all 0.5s ease;
+        }
+        .wire-left { left: 80px; width: 100px; }
+        .wire-right { right: 80px; width: 100px; }
+
+        /* القلب المركزي النيوني المطفأ في البداية */
+        .neon-heart {
+            font-size: 70px;
+            color: rgba(255, 255, 255, 0.15);
+            margin: 20px 0;
+            transition: all 0.5s ease-in-out;
+            user-select: none;
+        }
+
+        /* كارت عرض الرسالة المخفية */
+        .message-box {
+            min-height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+        }
+        .message-text {
+            font-size: 1.35rem;
+            color: transparent;
+            font-weight: bold;
+            line-height: 1.7;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        /* 🌟 تفعيل تأثير النيون المشع بالكامل عند التوصيل الناجح 🌟 */
+        .circuit-board.connected .wire-line {
+            background: #ff4081;
+            box-shadow: 0 0 12px #ff4081, 0 0 20px #ff69b4;
+        }
+        .circuit-board.connected .connect-btn {
+            background: #d81b60;
+            transform: scale(1.1);
+            animation: none;
+            box-shadow: 0 0 20px #ff4081;
+        }
+        .circuit-board.connected .neon-heart {
+            color: #fff0f5;
+            text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff4081, 0 0 40px #ff1493;
+            transform: scale(1.15);
+            animation: heartbeat 1.2s infinite ease-in-out;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1.15); }
+            50% { transform: scale(1.3); }
+        }
+        .circuit-board.connected .message-text {
+            color: #fff0f5;
+            text-shadow: 0 0 8px rgba(255,105,180,0.8);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="hearts-container"></div>
+
+    <div class="container">
+        <!-- الحاوية الإلكترونية الرئيسية للوحة الصداقة -->
+        <div class="circuit-board" id="board">
+            <div class="board-title">🔌 وَصِّلِي القَابِسَ الإِلِكْتُرُونِيَّ لِتَشْغِيلِ القَلْبِ ♥</div>
+            
+            <!-- منطقة الأسلاك المتشابكة والزر التفاعلي السحري -->
+            <div class="wire-zone">
+                <div class="node">📱 أَنَا</div>
+                <div class="wire-line wire-left"></div>
+                
+                <!-- زر التوصيل المركزي -->
+                <div class="connect-btn" id="plug-btn" onclick="connectWires()">🔌</div>
+                
+                <div class="wire-line wire-right"></div>
+                <div class="node">📱 نُورْهَانْ</div>
+            </div>
+
+            <!-- قلب النيون المشع -->
+            <div class="neon-heart" id="heart-neon">❤️</div>
+
+            <!-- منطقة الرسائل والعبارات المترابطة بالتناوب -->
+            <div class="message-box">
+                <div class="message-text" id="text-target">الصَّدِيقُ جُزءٌ مِنَ الرُّوحِ وَأَنتِ كُلُّ رُوحِي</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // مصفوفة تحتوي على الجمل بالتشكيل الكامل مأخوذة من صوركِ بالتناوب
+        const quotes = [
+            "الصَّدِيقُ جُزءٌ مِنَ الرُّوحِ وَأَنتِ كُلُّ رُوحِي",
+            "\"لِي صَاحِبٌ يَسقِي فُؤَادِي وُدّهُ .. يَروِي يَبَاسَ القَلبِ حَتَّى يُورِقَا\"",
+            "إِنَّ أَثمَنَ هَدِيَّةٍ قَد تَنَالُهَا : «صَدِيق» عَلَى هَيئَةِ حَيَاةٍ .",
+            "صَاحِب عَن صَاحِب يِفرِق .. مُو كِل نِجمَة بِالسِّمَاء تِبرِق",
+            "هَل كَانَتِ النُّجُومُ شَبِيهَةً لِعَينَيكِ .. أَم كَانَت عَينَاكِ النُّجُومَ بِذَاتِهَا ؟",
+            "\"رَبَّاهُ فَاجْمَعْ شَمْلَنَا فِي جَنَّةٍ فِيهَا الْهَنَاءُ ، بِلَا فِرَاقٍ يَكْمُلُ\"",
+            "وَأَنَا مُمْتَنَّةٌ لِلطَّرِيقِ ، لِلْأَيَّامِ ، لِلَّحَظَاتِ ، لِكُلِّ شَيْءٍ كَانَ سَبَبًا لِتَكُونِ : رَفِيقُ دَرْبِي الْأَعَزِّ .",
+            "كُلُّ شَيءٍ بِجِوَارِهَا أَحَنُّ ، أَخَفُّ ، وَأَلطَفُ .",
+            "وَنِيسَةُ الْقَلْبِ"
+        ];
+
+        let currentIdx = 0;
+        let isConnected = false;
+
+        function connectWires() {
+            const board = document.getElementById('board');
+            const textTarget = document.getElementById('text-target');
+            const plugBtn = document.getElementById('plug-btn');
+
+            if (!isConnected) {
+                // تفعيل التوصيل للمرة الأولى وإضاءة اللوحة نيون بالكامل
+                board.classList.add('connected');
+                plugBtn.innerText = '⚡';
+                isConnected = true;
+                textTarget.innerText = quotes[currentIdx];
+            } else {
+                // إذا كان متصلاً بالفعل، يقوم بالضغط والتبديل العشوائي السلس بين الـ 9 جمل
+                currentIdx = (currentIdx + 1) % quotes.length;
+                
+                textTarget.style.animation = 'none';
+                textTarget.offsetHeight; /* trigger reflow */
+                textTarget.innerText = quotes[currentIdx];
+                textTarget.style.animation = 'fadeIn 0.5s ease-out forwards';
+            }
+        }
+
+        // كود توليد القلوب المتساقطة تلقائياً في الخلفية
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            for (let i = 0; i < 25; i++) {
+                let heart = document.createElement('div');
+                heart.className = 'heart-bg';
+                heart.innerText = '♥';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * -20 + 'vh';
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+    </script>
+</body>
+</html>
